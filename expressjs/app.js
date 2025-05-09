@@ -1,11 +1,24 @@
-const http = require('http');
 
+const express = require('express');
+const requestHandler = require('./user');
 
-const server = http.createServer((req,res)=>{
-    console.log(req);
+const app = express();
+
+app.use((req,res,next)=>{
+  console.log("Came in first middleware",req.url,req.method);
+  next();
 });
 
-const PORT = 3001;
-server.listen(PORT, () => {
+app.use((req,res,next)=>{
+  console.log("Came in second middleware",req.url,req.method);
+  res.send("<p>welcome in middleware</p>");
+});
+
+
+
+
+
+const PORT = 3002;
+app.listen(PORT, () => {
   console.log(`Server running on address http://localhost:${PORT}`);
 });
