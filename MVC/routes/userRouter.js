@@ -6,7 +6,7 @@ const express = require('express');
 const userRouter = express.Router();
 
 // Local Module
-const { registeredHomes } = require('./hostRouter');
+const {registeredHomes} = require('./hostRouter');
 
 userRouter.get("/", (req, res, next) => {
   console.log(registeredHomes);
